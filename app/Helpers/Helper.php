@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Validator;
 
 class Helper
 {
@@ -49,4 +50,14 @@ class Helper
 			'data'    => $data,
 		];
 	}
+
+    public static function check_param($request,$rules){
+        $validator = Validator::make($request,$rules);
+
+        if ($validator->fails()) {
+            return self::rj('Validation Error', 422, $validator->errors());
+        }
+
+        return true;
+    }
 }
