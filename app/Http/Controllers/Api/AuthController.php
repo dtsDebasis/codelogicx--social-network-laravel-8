@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 class AuthController extends Controller
 {
     /**
-     * Route :
+     * Route : http://127.0.0.1:8000/api/v1/register
      * Details : Register user API
      * Author : Debasis Chakraborty
      * Created On : 18 th June 2021
@@ -57,7 +57,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Route :
+     * Route : http://127.0.0.1:8000/api/v1/login
      * Details : Login user API
      * Author : Debasis Chakraborty
      * Created On : 18 th June 2021
