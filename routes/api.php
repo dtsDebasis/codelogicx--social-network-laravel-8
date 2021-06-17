@@ -21,5 +21,9 @@ Route::group(['prefix' => 'v1/', 'middleware' => ['api']], function () {
     //Auth APIs
     Route::post('register', 'App\Http\Controllers\Api\AuthController@register');
     Route::post('login', 'App\Http\Controllers\Api\AuthController@login');
+
+    Route::middleware('auth:api')->group(function () {
+        Route::get('me', 'App\Http\Controllers\Api\AuthController@me');
+    });
 });
 

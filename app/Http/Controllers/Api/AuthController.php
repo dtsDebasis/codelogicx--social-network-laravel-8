@@ -13,11 +13,14 @@ class AuthController extends Controller
 {
     /**
      * Route : http://127.0.0.1:8000/api/v1/register
+     * Method : POST
      * Details : Register user API
      * Author : Debasis Chakraborty
      * Created On : 18 th June 2021
      * Updated On : 18 th June 2021
      * Last Update By : Debasis Chakraborty
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
 
     public function register(Request $request)
@@ -58,11 +61,14 @@ class AuthController extends Controller
 
     /**
      * Route : http://127.0.0.1:8000/api/v1/login
+     * Method : POST
      * Details : Login user API
      * Author : Debasis Chakraborty
      * Created On : 18 th June 2021
      * Updated On : 18 th June 2021
      * Last Update By : Debasis Chakraborty
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
 
     public function login(Request $request)
@@ -95,5 +101,20 @@ class AuthController extends Controller
         } catch (Exception $e) {
 			return Helper::rj($e->getMessage(), 500);
 		}
+    }
+
+    /**
+     * Route : http://127.0.0.1:8000/api/v1/me
+     * Method : GET
+     * Details : Authenticated User Details
+     * Author : Debasis Chakraborty
+     * Created On : 18 th June 2021
+     * Updated On : 18 th June 2021
+     * Last Update By : Debasis Chakraborty
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function me()
+    {
+        return Helper::rj('Current User Details', 200, auth()->user());
     }
 }
