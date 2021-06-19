@@ -47,6 +47,7 @@ class ProfileController extends Controller
     /**
      * Route : http://127.0.0.1:8000/api/v1/public_profile
      * Method : POST
+     * Auth Req as we have to return mutual friends
      * Details : Authenticated User Details
      * Author : Debasis Chakraborty
      * Created On : 18 th June 2021
@@ -83,6 +84,47 @@ class ProfileController extends Controller
                 ]);
             }
             return Helper::rj('Not a valid profile', 422);
+        } catch (Exception $e) {
+            return Helper::rj($e->getMessage(), 500);
+        }
+    }
+    /**
+     * Route : http://127.0.0.1:8000/api/v1/users?search=
+     * Method : GET
+     * Details : Search Users
+     * Author : Debasis Chakraborty
+     * Created On : 18 th June 2021
+     * Updated On : 18 th June 2021
+     * Last Update By : Debasis Chakraborty
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function users(Request $request)
+    {
+        try {
+            //Validation Check
+            $validation = Helper::check_param($request->all(), [
+                'search' => 'required|min:3',
+            ]);
+
+            if ($validation !== true) {
+                return $validation;
+            }
+            $user = auth()->user();
+
+            $columnsToSearch = ['name', 'email', 'username'];
+
+            $searchQuery = '%' . $request->search . '%';
+
+            $indents = User::where('id', 'LIKE', $searchQuery);
+
+            foreach($columnsToSearch as $column) {
+                $indents = $indents->orWhere($column, 'LIKE', $searchQuery);
+            }
+
+            //TODO : Pagination
+            $indents = $indents->get();
+
+            return Helper::rj('Results', 200,$indents);
         } catch (Exception $e) {
             return Helper::rj($e->getMessage(), 500);
         }
