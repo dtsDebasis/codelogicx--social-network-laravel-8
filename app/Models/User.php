@@ -72,4 +72,13 @@ class User extends Authenticatable
     {
         return "https://www.gravatar.com/avatar/".md5($this->email)."?d=mp&s=40";
     }
+
+    public static function getUserByUsername($username){
+        return self::whereUsername($username)->first();
+    }
+
+
+    public static function isSame($username1,$username2){
+        return $username1 == $username2 ? true : false;
+    }
 }

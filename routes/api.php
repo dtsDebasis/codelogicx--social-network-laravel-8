@@ -23,7 +23,9 @@ Route::group(['prefix' => 'v1/', 'middleware' => ['api']], function () {
     Route::post('login', 'App\Http\Controllers\Api\AuthController@login');
 
     Route::middleware('auth:api')->group(function () {
-        Route::get('me', 'App\Http\Controllers\Api\AuthController@me');
+        Route::get('me', 'App\Http\Controllers\Api\ProfileController@me');
+
+        Route::post('send_friend_request', 'App\Http\Controllers\Api\FriendshipController@send_friend_request');
     });
 });
 
