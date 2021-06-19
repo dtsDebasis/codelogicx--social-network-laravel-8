@@ -161,4 +161,10 @@ class FriendshipController extends Controller
             return Helper::rj($e->getMessage(), 500);
         }
     }
+
+    //TODO : block user
+
+    //TODO : un block user
+
+    //TODO : group user friends
 }
