@@ -295,7 +295,7 @@ trait Friendable
      */
     public function getFriendRequests()
     {
-        return Friendship::whereRecipient($this)->whereStatus(Status::PENDING)->get();
+        return Friendship::with(['sender','recipient'])->whereRecipient($this)->whereStatus(Status::PENDING)->get();
     }
 
     /**

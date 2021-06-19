@@ -70,4 +70,27 @@ class FriendshipController extends Controller
             return Helper::rj($e->getMessage(), 500);
         }
     }
+    /**
+     * Route : http://127.0.0.1:8000/api/v1/get_friend_requests
+     * Method : GET
+     * Details : Get Friend Requests
+     * Author : Debasis Chakraborty
+     * Created On : 19 th June 2021
+     * Updated On : 19 th June 2021
+     * Last Update By : Debasis Chakraborty
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function get_friend_requests(Request $request)
+    {
+        try {
+            $user = auth()->user();
+            //Get a list of pending Friend Requests
+            //TODO : Implement pagination
+            $friend_requests = $user->getFriendRequests();
+
+            return Helper::rj('Friend requests', 200,$friend_requests);
+        } catch (Exception $e) {
+            return Helper::rj($e->getMessage(), 500);
+        }
+    }
 }
