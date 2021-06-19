@@ -21,6 +21,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'username',
         'password',
     ];
 
@@ -30,6 +31,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
+        'id',
         'password',
         'remember_token',
         'email_verified_at',
@@ -49,6 +51,21 @@ class User extends Authenticatable
     protected $appends = [
         'avatar_url',
     ];
+
+    //Dynamically create username
+    public function setUsernameAttribute($value)
+    {
+        $username = head(explode(' ', trim($value)));
+
+        $i = 0;
+        while(User::whereUsername($username)->exists())
+        {
+            $i++;
+            $username = $username . $i;
+        }
+
+        $this->attributes['username'] = strtolower($username);
+    }
 
     //Custom attribute for user profile avatar image
     public function getAvatarUrlAttribute()

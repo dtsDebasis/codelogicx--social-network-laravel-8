@@ -40,6 +40,7 @@ class AuthController extends Controller
             //If validation check pass create new user
             $user = User::create([
                 'name' => $request->name,
+                'username' => $request->name,
                 'email' => $request->email,
                 'password' => bcrypt($request->password)
             ]);
