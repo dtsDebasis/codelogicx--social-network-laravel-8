@@ -94,7 +94,7 @@ class AuthController extends Controller
                     'token' => $token,
                 ]);
             } else {
-                return Helper::rj('Unauthorised', 401, []);
+                return Helper::rj('UnAuthorised', 401, []);
             }
 
             return Helper::rj('Something Bad happened', 400, []);
@@ -115,6 +115,10 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return Helper::rj('Current User Details', 200, auth()->user());
+        try {
+            return Helper::rj('Current User Details', 200, auth()->user());
+        } catch (Exception $e) {
+            return Helper::rj($e->getMessage(), 500);
+        }
     }
 }

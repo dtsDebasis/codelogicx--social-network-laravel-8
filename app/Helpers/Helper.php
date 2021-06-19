@@ -1,9 +1,6 @@
 <?php
 
 namespace App\Helpers;
-
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 use Validator;
 
 class Helper
