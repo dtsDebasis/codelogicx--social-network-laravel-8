@@ -50,8 +50,8 @@ class ProfileController extends Controller
      * Auth Req as we have to return mutual friends
      * Details : Authenticated User Details
      * Author : Debasis Chakraborty
-     * Created On : 18 th June 2021
-     * Updated On : 18 th June 2021
+     * Created On : 19 th June 2021
+     * Updated On : 19 th June 2021
      * Last Update By : Debasis Chakraborty
      * @return \Illuminate\Http\JsonResponse
      */
@@ -93,8 +93,8 @@ class ProfileController extends Controller
      * Method : GET
      * Details : Search Users
      * Author : Debasis Chakraborty
-     * Created On : 18 th June 2021
-     * Updated On : 18 th June 2021
+     * Created On : 19 th June 2021
+     * Updated On : 19 th June 2021
      * Last Update By : Debasis Chakraborty
      * @return \Illuminate\Http\JsonResponse
      */
