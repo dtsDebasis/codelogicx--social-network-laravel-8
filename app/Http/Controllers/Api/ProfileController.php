@@ -71,13 +71,17 @@ class ProfileController extends Controller
             $user = User::getUserByUsername($request->username);
             //Check if user is valid
             if ($user) {
-                //Validate username is same or not
-                if (User::isSame($visitor->username,$user->username)) {
-                    return Helper::rj('Username is same as yours', 422);
-                }
-
                 //Get mutual friend list
-                $mutual_friends = $visitor->getMutualFriends($user, $request->mutual_friends_limit);
+                $mutual_friends = [];
+                if ($visitor) {
+                    //Validate username is same or not
+                    if (User::isSame($visitor->username,$user->username)) {
+                        return Helper::rj('Username is same as yours', 422);
+                    }
+
+                    //Get Mutual friends
+                    $mutual_friends = $visitor->getMutualFriends($user, $request->mutual_friends_limit);
+                }
                 return Helper::rj('Profile User Details', 200, [
                     "basic_info" => $user,
                     "mutual_friends" => $mutual_friends,
