@@ -24,6 +24,7 @@ Route::group(['prefix' => 'v1/', 'middleware' => ['api']], function () {
 
     Route::middleware('auth:api')->group(function () {
         Route::get('me', 'App\Http\Controllers\Api\ProfileController@me');
+        Route::post('public_profile', 'App\Http\Controllers\Api\ProfileController@public_profile');
 
         Route::post('send_friend_request', 'App\Http\Controllers\Api\FriendshipController@send_friend_request');
         Route::get('get_friend_requests', 'App\Http\Controllers\Api\FriendshipController@get_friend_requests');

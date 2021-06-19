@@ -20,11 +20,11 @@ class Friendship extends Model
      * @var array
      */
     protected $hidden = [
-        'id',
-        'sender_type',
-        'recipient_type',
-        'recipient_id',
-        'sender_id',
+        // 'id',
+        // 'sender_type',
+        // 'recipient_type',
+        // 'recipient_id',
+        // 'sender_id',
         'created_at',
         'updated_at'
     ];
